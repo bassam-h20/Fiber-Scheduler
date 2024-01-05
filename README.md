@@ -32,6 +32,7 @@ Task 1 asks to simply implement a program that executes two sample functions `fo
 
 1. **`foo()`**
    ```cpp
+   hi
    
    ```
    - This function is a sample task that performs the following:
