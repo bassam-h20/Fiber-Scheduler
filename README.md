@@ -61,6 +61,11 @@ Task 1 asks to simply implement a program that executes two sample functions `fo
   clang++ 
   ```
 
+### Output and Observations
+---
+
+
+
 ### Notes:
 - Executiom of any cpp file would fail when ran locally on a machine that has clang installed. It requires being built and ran on the csctcloud via SSH to execute successfully and without errors.
 
@@ -155,6 +160,9 @@ The `main.cpp` file showcases the usage of the fiber scheduler and the example f
    clang++ 
    ```
 
+### Output and Observations
+---
+
 
 ### Notes:
 ---
@@ -220,6 +228,9 @@ The `main.cpp` file showcases the usage of the `yield()` function in the fiber s
 ```bash
 clang++ 
 ```
+
+### Output and Observations
+---
 
 
 ### Notes:
