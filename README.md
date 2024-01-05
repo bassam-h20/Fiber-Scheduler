@@ -1,14 +1,28 @@
-# ASP - Assignment
-## (Students: 21047697 & 20225626)
-## Fiber Scheduler Implementation
+# ASP: Group Assignment - Fiber Scheduler
+### (Student IDs : 21047697 & 22002656)
 
-## Overview
+---
+
+## Table of contents:
+* [Task 1](#task-1)
+  * test
+* [Task 2](#task-2)
+  * test
+* [Task 3](#task-3)
+   * test
+  
+
+##  Project Overview
 
 This project aims to implement a fiber scheduler using cooperative multitasking with custom context management. Fibers, lightweight cooperative threads, are scheduled and executed in a non-preemptive manner. This README provides an overview of the code structure and highlights key features in the implementation that contributes to the functionality of the program.
 
-## Task 1
-### Main Implementation
----
+# Task 1
+
+## Overview
+Task 1 asks to simply implement a program that executes two sample functions `foo` and `goo`, using the `Context` library
+
+## Main Implementation
+
 ### Data Structures
 
 - **Context Objects**: Two `Context` objects, `c` and `c_main`, are declared for managing task states.
@@ -16,12 +30,20 @@ This project aims to implement a fiber scheduler using cooperative multitasking 
 
 ### Functions
 
-1. **`foo()`**: This function is a sample task that performs the following:
+1. **`foo()`**
+   ```cpp
+   
+   ```
+   - This function is a sample task that performs the following:
    - Prints a message.
    - Increments the task counter (`tasks_done`).
    - Swaps the context back to `c_main` using `swap_context`.
 
-2. **`goo()`**: Another sample function similar to `foo()`.
+2. **`goo()`**
+   ``` cpp
+
+   ```
+   - Another sample function similar to `foo()`.
 
 3. **`main()` Function**:
    - **Stack Setup**: Allocates and initializes the stack for fibers, adjusting the stack pointer for alignment.
@@ -33,14 +55,23 @@ This project aims to implement a fiber scheduler using cooperative multitasking 
 
 - Ensure that the appropriate build tools and dependencies are available for your platform.
 
-### Note
+- To build and run, type this in the command line:
+
+  ```bash
+  clang++ 
+  ```
+
+### Notes:
+- Executiom of any cpp file would fail when ran locally on a machine that has clang installed. It requires being built and ran on the csctcloud via SSH to execute successfully and without errors.
 
 
-## Task 2
+
+
+# Task 2
 
 ## Overview
 
-This README extends the description of the Fiber Scheduler implementation to include Task-2. Task-2 introduces a scheduler class (`scheduler`) and two example fiber functions (`func1` and `func2`) that demonstrate the functionality of the cooperative multitasking system.
+ Task-2 introduces a scheduler class (`scheduler`) and two example fiber functions (`func1` and `func2`) that demonstrate the functionality of the cooperative multitasking system. Implementing the scheduler class allowed fibers to be added to queue, spawning them before executing anything, then  running one fiber at a time. A fiber executes after the previous fiber has been executed completely, which is simply the "First In First Out" (FIFO) model, the `<deque>` library is suitable for storing the fibers. 
 
 ## `scheduler` Class
 
@@ -51,6 +82,18 @@ The `scheduler` class manages the execution of fibers using a deque data structu
 - **`spawn` Method**: This method allows the scheduler to spawn a new fiber by adding it to the deque.
 
 - **`do_it` Method**: The `do_it` method performs the fiber scheduling. It retrieves the context of the current execution, checks if there are fibers in the deque, and if so, selects the first fiber for execution. The context is then set to that of the selected fiber, and after execution, the original context is restored.
+   ```cpp
+   void do_it() {
+        get_context(&context_);
+
+        if (!fibers_.empty()){
+            this_fiber = fibers_.front();
+            fibers_.pop_front();
+            set_context(this_fiber->get_context());
+        }
+        set_context(&context_);
+        this_fiber = nullptr;  }
+   ```
 
 - **`get_data` Method**: A getter method to retrieve the data associated with the current fiber.
 
@@ -70,7 +113,7 @@ The `fiber` class represents a fiber, which includes a function pointer and asso
 
 ## `fiber_api` Module
 
-The `fiber_api` module provides API functions that interface with the scheduler:
+The `fiber_api` module provides API functions that interact with the scheduler:
 
 - **`fiber_exit` Function**: Signals the exit of the current fiber, invoking the scheduler's `fiber_exit` method.
 
@@ -92,12 +135,93 @@ The `main.cpp` file showcases the usage of the fiber scheduler and the example f
 
 - The fiber functions (`func1` and `func2`) demonstrate interaction with the scheduler using API functions (`get_data` and `fiber_exit`).
 
-## Building and Running
+   ```cpp
+   fiber *f2 = new fiber(&func2, &d);
+   fiber *f1 = new fiber(&func1, &d);
 
+   spawn(f1, &d);
+   spawn(f2, &d);
+
+   do_it();
+   ```
+
+### Building and Running
+---
 - Ensure that the appropriate build tools and dependencies are available for your platform.
 
+- To build and run, type this in the command line:
 
-## Note
+   ```bash
+   clang++ 
+   ```
 
-- Task-2 introduces a basic scheduler and demonstrates the interaction between fibers and the scheduler using API functions.
 
+### Notes:
+---
+- Executiom of any cpp file would fail when ran locally on a machine that has clang installed. It requires being built and ran on the csctcloud via SSH to execute successfully and without errors.
+
+
+# Task 3
+
+## Overview
+
+ Task 3 revolves around extending the scheduler with a `yield()` function and demonstrate its usage with get_data.
+
+
+
+## `yield` function
+
+The `yield` function yields control from the fiber at hand to the scheduler.
+
+
+`yield` In the `scheduler.hpp` file:
+
+```cpp
+
+void yield(){
+   if(!fibers_.empty()){
+      auto current_contextt = this_fiber_ -> get_context();
+      fibers_.push_back(this_fiber_);
+      this_fiber_ = fibers_.front();
+      fibers_.pop_front();
+
+      swap_context(current_context, this_fiber_ -> get_context());
+   }
+}
+```
+
+The function does the following:
+
+- Begins by checking if deque is not empty
+
+- Then gets the context of current fiber 
+
+- Later adds the current fiber to the end of deque 
+
+- Sets the current fiber to the next one
+and removes the current fiber using `fiber_.pop_front();`
+
+- Finally it swaps the context of both current fiber and the scheduler using `swap_context` from `context.hpp`
+
+
+
+## Example Usage (`main.cpp`)
+
+The `main.cpp` file showcases the usage of the `yield()` function in the fiber scheduler:
+
+
+
+### Building and Running
+---
+- Ensure that the appropriate build tools and dependencies are available for your platform.
+
+- To build and run, type this in the command line:
+
+```bash
+clang++ 
+```
+
+
+### Notes:
+---
+- Executiom of any cpp file would fail when ran locally on a machine that has clang installed. It requires being built and ran on the csctcloud via SSH to execute successfully and without errors.
