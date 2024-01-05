@@ -32,7 +32,14 @@ Task 1 asks to simply implement a program that executes two sample functions `fo
 
 1. **`foo()`**
    ```cpp
-   hi
+   void foo() {
+
+    std::cout << "you called foo" << std::endl;
+    tasks_done++;
+
+    swap_context(&c, &c_main); 
+
+   }
    
    ```
    - This function is a sample task that performs the following:
@@ -42,6 +49,15 @@ Task 1 asks to simply implement a program that executes two sample functions `fo
 
 2. **`goo()`**
    ``` cpp
+   void goo(){
+
+    
+    std::cout<<"you called goo"<<std::endl;
+    tasks_done++;
+
+    swap_context(&c,&c_main); 
+
+   }
 
    ```
    - Another sample function similar to `foo()`.
