@@ -75,7 +75,7 @@ Task 1 asks to simply implement a program that executes two sample functions `fo
 - To build and run, type this in the command line:
 
   ```bash
-  clang++ 
+  clang++ main.cpp context.o -o program; ./program
   ```
 
 ### Output and Observations
