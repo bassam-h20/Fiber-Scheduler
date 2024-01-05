@@ -80,8 +80,10 @@ Task 1 asks to simply implement a program that executes two sample functions `fo
 
 ### Output and Observations
 
+The output for Task 1:
 
 
+![Step 4](./images/Task1output.png)
 
 ### Notes:
 - Executiom of any cpp file would fail when ran locally on a machine that has clang installed. It requires being built and ran on the csctcloud via SSH to execute successfully and without errors.
@@ -95,7 +97,7 @@ Task 1 asks to simply implement a program that executes two sample functions `fo
 
  Task-2 introduces a scheduler class (`scheduler`) and two example fiber functions (`func1` and `func2`) that demonstrate the functionality of the cooperative multitasking system. Implementing the scheduler class allowed fibers to be added to queue, spawning them before executing anything, then  running one fiber at a time. A fiber executes after the previous fiber has been executed completely, which is simply the "First In First Out" (FIFO) model, the `<deque>` library is suitable for storing the fibers. 
 
-## `scheduler` Class
+## Scheduler Class
 
 The `scheduler` class manages the execution of fibers using a deque data structure for fiber storage. Key features of the `scheduler` class include:
 
@@ -179,7 +181,9 @@ The `main.cpp` file showcases the usage of the fiber scheduler and the example f
 
 ### Output and Observations
 
+The output for Task 2:
 
+![Step 4](./images/Task2output.png)
 
 ### Notes:
 ---
@@ -247,17 +251,6 @@ clang++
 ```
 
 ### Output and Observations
-
-The output for Task 1:
-
-
-![Step 4](./images/Task1output.png)
-
-
-The output for Task 2:
-
-![Step 4](./images/Task2output.png)
-
 
 The output for Task 3:
 
