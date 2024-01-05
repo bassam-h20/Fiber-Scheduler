@@ -62,7 +62,7 @@ Task 1 asks to simply implement a program that executes two sample functions `fo
   ```
 
 ### Output and Observations
----
+
 
 
 
@@ -161,7 +161,7 @@ The `main.cpp` file showcases the usage of the fiber scheduler and the example f
    ```
 
 ### Output and Observations
----
+
 
 
 ### Notes:
@@ -230,7 +230,7 @@ clang++
 ```
 
 ### Output and Observations
----
+
 
 
 ### Notes:
