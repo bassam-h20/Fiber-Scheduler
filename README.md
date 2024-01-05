@@ -231,7 +231,20 @@ clang++
 
 ### Output and Observations
 
+The output for Task 1:
 
+
+![Step 4](./images/Task1output.png)
+
+
+The output for Task 2:
+
+![Step 4](./images/Task2output.png)
+
+
+The output for Task 3:
+
+![Step 4](./images/Task3output.png)
 
 ### Notes:
 ---
