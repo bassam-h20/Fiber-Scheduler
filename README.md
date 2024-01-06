@@ -285,6 +285,17 @@ The output for Task 3 without any tests:
 
 ![Step 4](./images/Task3output.png)
 
+Inside the 'do_it()' function:
+
+```
+std::exit(EXIT_SUCCESS);
+
+```
+
+This was placed because when we ran the program it would not end and you would have to Ctrl + c to exit.
+
+So in this way when do_it is called it ends afterwards.
+
 - 
 
 ### Notes:
