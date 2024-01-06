@@ -269,9 +269,11 @@ clang++
 
 ### Output and Observations
 
-The output for Task 3:
+The output for Task 3 without any tests:
 
 ![Step 4](./images/Task3output.png)
+
+- 
 
 ### Notes:
 ---
