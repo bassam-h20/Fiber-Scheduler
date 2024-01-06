@@ -5,11 +5,15 @@
 
 ## Table of contents:
 * [Task 1](#task-1)
-  * test
+   * [Overview](#overview)
+   * [Main Implementation](#main-implementation)
+   * [Output & Observations](#output-and-observations)
 * [Task 2](#task-2)
-  * test
+   * [Overview](#overview-1)
+   * [Output & Observations](#output-and-observations-1)
 * [Task 3](#task-3)
-   * test
+   * [Overview](#overview-2)
+   * [Output & Observations](#output-and-observations-2)
   
 
 ##  Project Overview
@@ -78,7 +82,7 @@ Task 1 asks to simply implement a program that executes two sample functions `fo
   clang++ main.cpp context.o -o program; ./program
   ```
 
-### Output and Observations
+## Output and Observations
 
 The output for Task 1:
 
@@ -179,7 +183,7 @@ The `main.cpp` file showcases the usage of the fiber scheduler and the example f
    clang++ 
    ```
 
-### Output and Observations
+## Output and Observations
 
 The output for Task 2:
 
@@ -267,7 +271,7 @@ The `main.cpp` file showcases the usage of the `yield()` function in the fiber s
 clang++ 
 ```
 
-### Output and Observations
+## Output and Observations
 
 The output for Task 3 without any tests:
 
