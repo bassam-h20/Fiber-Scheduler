@@ -274,7 +274,11 @@ and removes the current fiber using `fiber_.pop_front();`
 
 ### Example Usage (`main.cpp`)
 ---
-The `main.cpp` file showcases the usage of the `yield()` function in the fiber scheduler:
+The `main.cpp` file showcases the usage of the `yield()` function in the fiber scheduler
+
+### Unit testing (`unit_test.cpp`)
+---
+The `unit_test` file tests different operations with the fiber scheduler. It uses the `simpletest` testing framework
 
 
 
@@ -287,6 +291,11 @@ The `main.cpp` file showcases the usage of the `yield()` function in the fiber s
    * `main.cpp` :
    ```bash
    clang++ main.cpp context.o -o main; ./main
+   ```
+
+   * `unit_test.cpp` :
+   ```bash
+   clang++ unit_test.cpp simpletest.cpp context.o -o unit_test; ./unit_test
    ```
 
 
