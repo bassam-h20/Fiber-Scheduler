@@ -185,6 +185,23 @@ The output for Task 2:
 
 ![Step 4](./images/Task2output.png)
 
+- "entered main": Indicates the start of the main function
+
+- "after spawn func1": Printed after spawning 'f1'
+
+- "after spawn func2": Printed after spawning 'f2'
+
+- "fiber 1 started": Indicates the start of the execution of 'func1'
+
+- "fiber 1, 10": Indicates the value of d when accessed from 'func1'
+
+- "fiber 2 started": Indicates the start of the execution of 'func2'
+
+- "fiber 2, 10": Indicates the value of d when accessed from 'func2'
+
+
+
+
 ### Notes:
 ---
 - Executiom of any cpp file would fail when ran locally on a machine that has clang installed. It requires being built and ran on the csctcloud via SSH to execute successfully and without errors.
