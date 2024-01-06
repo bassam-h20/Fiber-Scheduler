@@ -1,40 +1,59 @@
 #include <iostream>
 #include "fiber_api.hpp"
-#include <cstdlib>
 
+//scheduler instance
+scheduler y;
+
+// Function for the first fiber
 void func1()
 {
-    std::cout << "fiber 1 started" << std::endl;
-    int *dp = (int *)get_data();
-    std::cout << "fiber 1, " << *dp << std::endl;
-    *dp = *dp + 1;
-    fiber_exit();
+    // Retrieve data from the current fiber
+    auto dp = y.current_fiber()->get_data();
+
+    // Display information about the first fiber before yielding
+    std::cout << "fiber 1 before " << *(int*)dp << std::endl;
+
+    // Yield control to the scheduler to execute the next fiber
+    y.yield();
+
+    // Modify the data and display information about the first fiber after resuming
+    *(int*)dp = *(int*)dp + 1;
+    std::cout << "fiber 1 after " << *(int*)dp <<std::endl;
+
+    // Exit the first fiber
+    y.fiber_exit();
 }
 
+// Function for the second fiber
 void func2()
 {
-    std::cout << "fiber 2 started" << std::endl;
-    int *dp = (int *)get_data();
-    std::cout << "fiber 2, " << *dp << std::endl;
+    // Retrieve data from the current fiber
+    auto dp = y.current_fiber()->get_data();
 
-    if (*dp == 11)
-        std::exit(EXIT_SUCCESS);
+    // Display information about the second fiber
+    std::cout << "fiber 2 " << *(int*)dp << std::endl;
+
+    // Exit the second fiber
+    y.fiber_exit();
 }
 
 int main()
 {
-    std::cout << "entered main" << std::endl;
-    int d = 10;
+    // Initialize data for fibers
+    int x = 10;
+    int *dp = &x;
 
-    fiber *f2 = new fiber(&func2, &d);
-    fiber *f1 = new fiber(&func1, &d);
-    spawn(f1, &d);
-    std::cout << "after spawn func1" << std::endl;
-    spawn(f2, &d);
-    std::cout << "after spawn func2" << std::endl;
+    // Create two fibers with their respective functions and data
+    fiber f2(func2, dp);
+    fiber f1(func1, dp);
 
-    do_it();
-    std::cout << "after do_it()" << std::endl;
+    // Add the fibers to the scheduler
+    y.spawn(&f1);
+    y.spawn(&f2);
 
+    // Execute fibers in the scheduler
+    y.do_it();
+
+    // Return from the main function
     return 0;
 }
