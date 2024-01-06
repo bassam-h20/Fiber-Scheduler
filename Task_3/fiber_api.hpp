@@ -1,6 +1,6 @@
 #include "scheduler.hpp"
 
-// Global scheduler instance
+// Scheduler instance
 scheduler s;
 
 // Function to exit the current fiber
@@ -26,4 +26,10 @@ void spawn(void(*function)(), void* data)
 void do_it()
 {
     s.do_it();
+}
+
+// Function to yield control to the next fiber in the deque
+void yield()
+{
+    s.yield();
 }
