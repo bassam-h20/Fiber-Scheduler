@@ -296,7 +296,7 @@ This was placed because when we ran the program it would not end and you would h
 
 So in this way when do_it is called it ends afterwards.
 
-- 
+
 
 ### Notes:
 ---
