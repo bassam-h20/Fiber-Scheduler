@@ -278,10 +278,6 @@ The `main.cpp` file showcases the usage of the `yield()` function in the fiber s
    clang++ main.cpp context.o -o main; ./main
    ```
 
-   * `unit_test.cpp` :
-   ```bash
-   clang++ unit_test.cpp simpletest.cpp -o unit_test; ./unit_test
-   ```
 
 ## Output and Observations
 
