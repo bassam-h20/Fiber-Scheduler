@@ -185,7 +185,7 @@ The `main.cpp` file showcases the usage of the fiber scheduler and the example f
 - To build and run, type this in the command line:
 
    ```bash
-   clang++ 
+   clang++ main.cpp context.o -o main; ./main
    ```
 
 ## Output and Observations
