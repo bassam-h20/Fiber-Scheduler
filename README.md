@@ -10,9 +10,11 @@
    * [Output & Observations](#output-and-observations)
 * [Task 2](#task-2)
    * [Overview](#overview-1)
+   * [Implementation](#implementation)
    * [Output & Observations](#output-and-observations-1)
 * [Task 3](#task-3)
    * [Overview](#overview-2)
+   * [Implementation](#implementation-1)
    * [Output & Observations](#output-and-observations-2)
   
 
@@ -101,7 +103,9 @@ The output for Task 1:
 
  Task-2 introduces a scheduler class (`scheduler`) and two example fiber functions (`func1` and `func2`) that demonstrate the functionality of the cooperative multitasking system. Implementing the scheduler class allowed fibers to be added to queue, spawning them before executing anything, then  running one fiber at a time. A fiber executes after the previous fiber has been executed completely, which is simply the "First In First Out" (FIFO) model, the `<deque>` library is suitable for storing the fibers. 
 
-## Scheduler Class
+## Implementation
+### Scheduler Class
+---
 
 The `scheduler` class manages the execution of fibers using a deque data structure for fiber storage. Key features of the `scheduler` class include:
 
@@ -139,8 +143,8 @@ The `fiber` class represents a fiber, which includes a function pointer and asso
 
 - **`get_data` Method**: A getter method to retrieve the data associated with the fiber.
 
-## `fiber_api` Module
-
+### `fiber_api` API Module
+---
 The `fiber_api` module provides API functions that interact with the scheduler:
 
 - **`fiber_exit` Function**: Signals the exit of the current fiber, invoking the scheduler's `fiber_exit` method.
@@ -151,7 +155,8 @@ The `fiber_api` module provides API functions that interact with the scheduler:
 
 - **`do_it` Function**: Performs fiber scheduling by invoking the scheduler's `do_it` method.
 
-## Example Usage (`main.cpp`)
+### Example Usage (`main.cpp`)
+---
 
 The `main.cpp` file showcases the usage of the fiber scheduler and the example fiber functions:
 
@@ -218,8 +223,9 @@ The output for Task 2:
  Task 3 revolves around extending the scheduler with a `yield()` function and demonstrate its usage with get_data.
 
 
-
-## `yield` function
+## Implementation
+### `yield` function
+---
 
 The `yield` function yields control from the fiber at hand to the scheduler.
 
@@ -230,7 +236,7 @@ The `yield` function yields control from the fiber at hand to the scheduler.
 
 void yield(){
    if(!fibers_.empty()){
-      auto current_contextt = this_fiber_ -> get_context();
+      auto current_context = this_fiber_ -> get_context();
       fibers_.push_back(this_fiber_);
       this_fiber_ = fibers_.front();
       fibers_.pop_front();
@@ -255,8 +261,8 @@ and removes the current fiber using `fiber_.pop_front();`
 
 
 
-## Example Usage (`main.cpp`)
-
+### Example Usage (`main.cpp`)
+---
 The `main.cpp` file showcases the usage of the `yield()` function in the fiber scheduler:
 
 
@@ -265,11 +271,17 @@ The `main.cpp` file showcases the usage of the `yield()` function in the fiber s
 ---
 - Ensure that the appropriate build tools and dependencies are available for your platform.
 
-- To build and run, type this in the command line:
+- To build and run the following, type this in the command line:
 
-```bash
-clang++ 
-```
+   * `main.cpp` :
+   ```bash
+   clang++ main.cpp context.o -o main; ./main
+   ```
+
+   * `unit_test.cpp` :
+   ```bash
+   clang++ unit_test.cpp simpletest.cpp -o unit_test; ./unit_test
+   ```
 
 ## Output and Observations
 
