@@ -26,3 +26,9 @@ void do_it()
 {
     s.do_it();
 }
+
+// Function to yield control to the next fiber in the deque
+void yield()
+{
+    s.yield();
+}
