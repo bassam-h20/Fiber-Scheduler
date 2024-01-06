@@ -246,6 +246,17 @@ void yield(){
 }
 ```
 
+And below is the get_data function that retrieves data from the currently executed fiber:
+
+```
+void *get_data()\
+
+    {
+        return this_fiber_->get_data();
+    }
+
+```
+
 The function does the following:
 
 - Begins by checking if deque is not empty
