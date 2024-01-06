@@ -1,6 +1,6 @@
 #include "scheduler.hpp"
 
-// Global scheduler instance
+// Scheduler instance
 scheduler s;
 
 // Function to exit the current fiber
