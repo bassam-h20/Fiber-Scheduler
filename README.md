@@ -249,7 +249,7 @@ void yield(){
 And below is the get_data function that retrieves data from the currently executed fiber:
 
 ```
-void *get_data()\
+void *get_data()
 
     {
         return this_fiber_->get_data();
