@@ -16,7 +16,7 @@ void *get_data()
 }
 
 // Function to spawn a new fiber
-void spawn(void(*function)(), void* data)
+void spawn(void(*function)(), void* data = nullptr)
 {
     fiber* f = new fiber(function, data);
     s.spawn(f);
