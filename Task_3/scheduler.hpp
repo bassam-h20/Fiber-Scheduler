@@ -41,11 +41,6 @@ public:
             set_context(this_fiber_->get_context());
         }
 
-        // Terminate the program with success status
-        std::exit(EXIT_SUCCESS);
-
-        // Restore the original context
-        set_context(&context_);
     }
 
     // Function to retrieve data from the currently executing fiber

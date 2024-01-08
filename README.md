@@ -276,11 +276,48 @@ and removes the current fiber using `fiber_.pop_front();`
 ---
 The `main.cpp` file showcases the usage of the `yield()` function in the fiber scheduler
 
+
+
 ### Unit testing (`unit_test.cpp`)
 ---
 The `unit_test` file tests different operations with the fiber scheduler. It uses the `simpletest` testing framework
 
+- Increment Value Test: This test spawns a fiber and passes a pointer to an int variable to the fiber. The tests checks for the value of 'd' after the fiber execution is not equal to 41 meaning that the value was successfully incremented.
 
+```
+DEFINE_TEST_G(IncrementValueTest, FiberScheduler)
+{
+    int d = 40;
+    int* dp = &d;
+    spawn(func1, dp);
+    TEST_MESSAGE(*dp != 41, "Fiber data is incorrect, value not incremented");
+}
+```
+
+
+- Modify Value Test: This test is somewhat similar to the first one but this test checks whether the value of 'd' after the fiber execution is not equal to 20 which indicates that the value was modified inside the fiber.
+
+```
+DEFINE_TEST_G(ModifyValue, FiberScheduler)
+{
+    int d = 10;
+    int *dp = &d;
+    spawn(func3, dp);
+    TEST_MESSAGE(*dp != 20, "Fiber data is incorrect, value not modified");
+}
+```
+
+
+- String Test: This test spawns two fibers and then calls 'do_it'. The test checks if the fibers execute in a specific order.
+
+```
+DEFINE_TEST_G(StringTest, FiberScheduler)
+{
+    spawn(func2_1);
+    spawn(func2_2);
+    do_it();   
+}
+```
 
 ### Building and Running
 ---
@@ -301,21 +338,9 @@ The `unit_test` file tests different operations with the fiber scheduler. It use
 
 ## Output and Observations
 
-The output for Task 3 without any tests:
+The output for Task 3:
 
 ![Step 4](./images/Task3output.png)
-
-Inside the 'do_it()' function:
-
-```
-std::exit(EXIT_SUCCESS);
-
-```
-
-This was placed because when we ran the program it would not end and you would have to Ctrl + c to exit.
-
-So in this way when do_it is called it ends afterwards.
-
 
 
 ### Notes:
